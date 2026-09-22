@@ -2,5 +2,10 @@
   "mode": "public",
   "pages_base": "https://1000says.github.io/recipe-cards",
   "repo": "https://github.com/1000says/recipe-cards",
-  "note": "public = Pagesが誰でも開く。private = リポを非公開にする。無料プランでは私設Pagesは止まる。GitHub Proなら私設Pages可。"
+  "switch": {
+    "ui": "https://github.com/1000says/recipe-cards/settings → Danger zone → Change visibility",
+    "cli_public": "gh repo edit 1000says/recipe-cards --visibility public --accept-visibility-change-consequences",
+    "cli_private": "gh repo edit 1000says/recipe-cards --visibility private --accept-visibility-change-consequences"
+  },
+  "note": "public = Pagesが誰でも開く。private = リポ非公開。無料プランでは私設Pagesは止まる。GitHub Proなら私設Pages可。"
 }
