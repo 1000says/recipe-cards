@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>牡丹鰺と翡翠茄子のお碗</title>
+<title>牡丹&#40039;と翡翠茄子のお&#26880;</title>
 <meta name="robots" content="noindex">
 <style>
-:root { --paper:#FAFAF7; --ink:#161616; --sub:#6A6A6A; --mute:#8A8A8A; --line:#E6E4DC; --btn:#161616; --btn-ink:#fff; --unv:#A8762A; --soft:#F3F1EA; }
+:root { --paper:#FAFAF7; --ink:#161616; --sub:#6A6A6A; --mute:#8A8A8A; --line:#E6E4DC; --btn:#161616; --btn-ink:#fff; --unv:#A8762A; }
 @media (prefers-color-scheme: dark) {
-  :root { --paper:#121212; --ink:#F2EFE6; --sub:#A7A49A; --mute:#8A877E; --line:#2A2A2A; --btn:#F2EFE6; --btn-ink:#121212; --unv:#D7A35A; --soft:#1E1E1E; }
+  :root { --paper:#121212; --ink:#F2EFE6; --sub:#A7A49A; --mute:#8A877E; --line:#2A2A2A; --btn:#F2EFE6; --btn-ink:#121212; --unv:#D7A35A; }
 }
 * { box-sizing:border-box; margin:0; padding:0; }
 body { font-family:"Hiragino Sans","Noto Sans JP",sans-serif; background:var(--paper); color:var(--ink); line-height:1.7; }
@@ -16,47 +16,42 @@ button { font-family:inherit; cursor:pointer; }
 #overview { max-width:720px; margin:0 auto; padding:28px 20px 80px; }
 .kicker { font-size:12px; color:var(--mute); margin-bottom:10px; letter-spacing:.12em; }
 h1 { font-size:clamp(26px,4vw,34px); line-height:1.3; margin-bottom:12px; }
-.lead { color:var(--sub); font-size:15px; margin-bottom:14px; }
-.meta { color:var(--mute); font-size:13px; margin-bottom:18px; }
+.lead,.note,.meta { color:var(--sub); }
 .cta { display:inline-flex; background:var(--btn); color:var(--btn-ink); border:0; border-radius:10px; padding:11px 18px; font-size:14px; font-weight:700; }
 .status { font-size:12px; color:var(--unv); margin-top:10px; }
-.variants { display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 10px; }
+.variants { display:flex; gap:8px; margin:18px 0 10px; }
 .variant { border:1px solid var(--line); background:transparent; color:var(--ink); border-radius:999px; padding:6px 12px; font-size:13px; }
-.variant.on { border-color:var(--ink); background:var(--ink); color:var(--paper); }
-.toolbar { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:8px 0 16px; }
+.variant.on { background:var(--ink); color:var(--paper); }
+.toolbar { display:flex; align-items:center; justify-content:space-between; margin:8px 0 16px; }
 .serv { display:inline-flex; align-items:center; gap:10px; border:1px solid var(--line); border-radius:999px; padding:4px 8px; }
 .serv button { width:28px; height:28px; border:0; background:transparent; color:var(--ink); font-size:18px; }
-.serv b { min-width:64px; text-align:center; font-variant-numeric:tabular-nums; font-size:14px; }
+.serv b { min-width:64px; text-align:center; font-variant-numeric:tabular-nums; }
 h2 { font-size:15px; margin:28px 0 10px; }
-.ings { list-style:none; }
-.ings li { display:flex; justify-content:space-between; gap:16px; padding:8px 0; border-bottom:1px solid var(--line); font-size:15px; }
+.ings,.steps { list-style:none; }
+.ings li { display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--line); }
 .ings .g { font-variant-numeric:tabular-nums; color:var(--sub); }
-.note { color:var(--sub); font-size:13.5px; margin-top:10px; }
-.steps { list-style:none; }
+.note { font-size:13.5px; margin-top:10px; }
 .steps li { display:grid; grid-template-columns:28px 1fr; gap:10px; padding:12px 0; border-bottom:1px solid var(--line); cursor:pointer; }
 .num { width:24px; height:24px; border-radius:50%; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-size:12px; color:var(--sub); }
-.steps strong { display:block; font-size:15px; }
-.steps span { display:block; color:var(--sub); font-size:13px; margin-top:2px; }
+.steps strong { display:block; }
+.steps span { display:block; color:var(--sub); font-size:13px; }
 #cook { display:none; position:fixed; inset:0; background:var(--paper); z-index:10; flex-direction:column; }
 #cook.on { display:flex; }
-.cook-top { height:56px; display:flex; align-items:center; gap:10px; padding:0 16px; border-bottom:1px solid var(--line); }
-.ttl { font-size:13px; }
+.cook-top { height:56px; display:flex; align-items:center; padding:0 16px; border-bottom:1px solid var(--line); }
 .x { margin-left:auto; border:0; background:transparent; color:var(--ink); font-size:22px; width:36px; }
 .stage { flex:1; display:flex; flex-direction:column; justify-content:center; text-align:center; padding:24px 28px 96px; max-width:640px; margin:0 auto; width:100%; }
 .sec { font-size:12px; letter-spacing:.14em; color:var(--mute); margin-bottom:14px; }
 .stage h2 { font-size:clamp(22px,4vw,30px); margin:0 0 16px; }
-.stage p { font-size:16px; color:var(--sub); }
 .cook-nav { position:absolute; left:0; right:0; bottom:0; display:flex; align-items:center; justify-content:center; gap:28px; padding:14px 16px calc(14px + env(safe-area-inset-bottom)); }
 .cook-nav button { width:40px; height:40px; border:0; background:transparent; color:var(--ink); font-size:22px; }
-.cook-nav button:disabled { opacity:.28; }
 .pos { font-size:13px; color:var(--sub); font-variant-numeric:tabular-nums; min-width:88px; text-align:center; }
 </style>
 </head>
 <body>
 <div id="overview">
   <div class="kicker">KAPPO / WAN</div>
-  <h1>牡丹鰺と翡翠茄子のお碗</h1>
-  <p class="lead">丸なすを翡翠に仕立て、骨切りした鰺を葛で湯引きして碗に張る。吸い地は鰺のアラだし。</p>
+  <h1>牡丹&#40039;と翡翠茄子のお&#26880;</h1>
+  <p class="lead">丸なすを翡翠に仕立て、骨切りした&#40039;を葛で湯引きして&#26880;に張る。吸い地は&#40039;のアラだし。</p>
   <div class="meta">8ステップ ・ 約90分（浸け置き除く）</div>
   <button class="cta" type="button" id="start">調理を開始</button>
   <div class="status">※未検証</div>
@@ -68,26 +63,27 @@ h2 { font-size:15px; margin:28px 0 10px; }
     <div class="serv"><button type="button" id="minus">-</button><b id="sv">2 人前</b><button type="button" id="plus">+</button></div>
   </div>
   <ul class="ings" id="ings"></ul>
-  <p class="note">丸なすは1個250-300g。鰺は骨切り済みの柵でも可。じゅん菜がなければ湯がいた三つ葉8g。</p>
+  <p class="note">丸なすは1個250-300g。&#40039;は骨切り済みの柵でも可。</p>
   <h2>ステップ</h2>
   <ol class="steps" id="slist"></ol>
-  <p class="note">クロロフィルは高温と酸でオリーブ色に落ちる。氷締めは熱変性を止め、皮を収縮させてむきやすくする。鰺の小骨は皮を残した細断で噛み砕ける。葛は表面のタンパク質を保護し、湯引きで花状に開く。アラだしは沸騰させると濁る。</p>
-  <p class="note">出典: [RAG] 月刊専門料理 2023.8 / [Web] 3分クッキング翡翠びたし（油温の対照）</p>
+  <p class="note">出典: [RAG] 月刊専門料理 2023.8 / [Web] 3分クッキング翡翠びたし</p>
 </div>
 <div id="cook" aria-hidden="true">
-  <div class="cook-top"><div class="ttl" id="cook-title"></div><button class="x" id="close" type="button">×</button></div>
+  <div class="cook-top"><div class="ttl" id="cook-title"></div><button class="x" id="close" type="button">x</button></div>
   <div class="stage"><div class="sec" id="cook-sec"></div><h2 id="cook-h"></h2><p id="cook-b"></p></div>
-  <div class="cook-nav"><button type="button" id="prev">‹</button><div class="pos" id="pos"></div><button type="button" id="next">›</button></div>
+  <div class="cook-nav"><button type="button" id="prev"><</button><div class="pos" id="pos"></div><button type="button" id="next">></button></div>
 </div>
 <script>
+var H = "\u9c67";
+var W = "\u6900";
 var DATA = {
-  title: "牡丹鰺と翡翠茄子のお碗",
+  title: "牡丹" + H + "と翡翠茄子のお" + W,
   base: 2,
   variants: { standard: {}, nojunsai: {"じゅん菜": 0} },
   ings: [
     {name:"丸なす", g:300},
-    {name:"鰺（中骨なし・骨切り前）", g:180},
-    {name:"鰺の頭・中骨・ヒレ", g:200},
+    {name:H + "（中骨なし・骨切り前）", g:180},
+    {name:H + "の頭・中骨・ヒレ", g:200},
     {name:"真昆布", g:8},
     {name:"水（だし用）", g:800},
     {name:"淡口しょうゆ", g:8},
@@ -99,14 +95,14 @@ var DATA = {
     {name:"揚げ油（吸収分）", g:12}
   ],
   steps: [
-    {sec:"下処理", heading:"丸なすに串打ちする", body:"ヘタを残し、皮目全体に竹串をまんべんなく刺す。水気を拭く。破裂防止と火通りのため。"},
-    {sec:"下処理", heading:"鰺のぬめりを取る", body:"70℃前後の湯に60〜70秒くぐらせて氷水へ。白く浮いたぬめりを布巾で拭き、腹を開いて内臓を除く。頭・中骨・ヒレはアラだし用に分ける。"},
-    {sec:"下処理", heading:"骨切りする", body:"皮一枚を残し、2〜3mm間隔で骨を断つ。家庭は10枚切り程度でよい。一口大に切る。"},
+    {sec:"下処理", heading:"丸なすに串打ちする", body:"ヘタを残し、皮目全体に竹串をまんべんなく刺す。水気を拭く。"},
+    {sec:"下処理", heading:H + "のぬめりを取る", body:"70C前後の湯に60-70秒くぐらせて氷水へ。ぬめりを拭き、腹を開いて内臓を除く。"},
+    {sec:"下処理", heading:"骨切りする", body:"皮一枚を残し、2-3mm間隔で骨を断つ。一口大に切る。"},
     {sec:"下処理", heading:"じゅん菜を洗う", body:"ぬめりを残して軽く洗い、熱湯を通して氷水へ。"},
-    {sec:"作り方", heading:"翡翠茄子をつくる", body:"油を180℃に上げ、串打ちした丸なすを芯まで揚げる。すぐ氷水へ。皮を手早くむき、熱湯にくぐらせて油抜きし、昆布だしに浸ける。色優先なら160℃でも可だが、丸なすは火通りのため180℃を採用。"},
-    {sec:"作り方", heading:"アラだしを取る", body:"霜降りした頭・中骨・ヒレと昆布8g、水800gを60〜80℃帯で15分。沸騰させない。濾し、塩・淡口・酒で調味。あたため用と吸い地用に分ける。"},
-    {sec:"作り方", heading:"鰺を葛で湯引きする", body:"骨切りした鰺に葛粉をまぶし、皮面を軽く叩く。沸いただしに皮目から入れ、花が開いたら全体を沈め、すぐ氷水へ。"},
-    {sec:"作り方", heading:"碗に組み立てる", body:"あたため用だしで翡翠茄子と鰺を温める。碗に茄子・鰺・じゅん菜を入れ、吸い地を張る。実ゆずの輪切りをあしらう。"}
+    {sec:"作り方", heading:"翡翠茄子をつくる", body:"油を180Cに上げ、丸なすを芯まで揚げる。すぐ氷水へ。皮をむき、熱湯で油抜きし、昆布だしに浸ける。"},
+    {sec:"作り方", heading:"アラだしを取る", body:"霜降りした頭・中骨・ヒレと昆布8g、水800gを60-80Cで15分。沸騰させない。"},
+    {sec:"作り方", heading:H + "を葛で湯引きする", body:"骨切りした" + H + "に葛粉をまぶし、沸いただしに皮目から入れる。花が開いたら沈め、氷水へ。"},
+    {sec:"作り方", heading:W + "に組み立てる", body:"あたため用だしで翡翠茄子と" + H + "を温める。" + W + "に茄子・" + H + "・じゅん菜を入れ、吸い地を張る。"}
   ]
 };
 var servings = DATA.base, variant = "standard", step = 0;
