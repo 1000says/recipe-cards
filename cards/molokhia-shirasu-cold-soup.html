@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>モロヘイヤと釜揚げしらすの冷たいスープ</title>
+<style>
+:root {
+  --paper:#FAFAF7; --ink:#161616; --sub:#6A6A6A; --mute:#8A8A8A;
+  --line:#E6E4DC; --card:#fff; --btn:#161616; --btn-ink:#fff;
+  --rag:#2E5E42; --web:#3A6EA5; --unv:#A8762A; --soft:#F3F1EA; --bar:#161616;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper:#121212; --ink:#F2EFE6; --sub:#A7A49A; --mute:#8A877E;
+    --line:#2A2A2A; --card:#1A1A1A; --btn:#F2EFE6; --btn-ink:#121212;
+    --rag:#8FC79F; --web:#7AA7D4; --unv:#D7A35A; --soft:#1E1E1E; --bar:#F2EFE6;
+  }
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+html, body { min-height:100%; }
+body {
+  font-family: "Hiragino Sans", "Noto Sans CJK JP", "Noto Sans JP", sans-serif;
+  background: var(--paper); color: var(--ink); line-height:1.7;
+}
+button { font-family: inherit; cursor: pointer; }
+#overview { max-width: 920px; margin: 0 auto; padding: 28px 20px 96px; }
+.hero { display:grid; grid-template-columns: 1.05fr 1fr; gap: 32px; align-items:center; margin-bottom: 28px; }
+.photos { display:grid; grid-template-columns: 1fr 1fr; gap:8px; }
+.photos img { width:100%; height:100%; object-fit:cover; border-radius:12px; display:block; background:var(--soft); }
+.photos.n1 { grid-template-columns:1fr; }
+.photos.n1 img { max-height:340px; }
+.photos.n3 img:first-child { grid-row: span 2; min-height:220px; }
+.kicker { font-size:12px; color:var(--mute); margin-bottom:10px; letter-spacing:.12em; }
+h1 { font-size: clamp(26px, 4vw, 36px); line-height:1.3; font-weight:700; letter-spacing:-0.02em; margin-bottom:12px; }
+.lead { color:var(--sub); font-size:15px; margin-bottom:14px; }
+.meta { color:var(--mute); font-size:13px; margin-bottom:18px; }
+.cta-row { display:flex; flex-wrap:wrap; gap:8px; }
+.cta, .ghost {
+  display:inline-flex; align-items:center; justify-content:center;
+  border-radius:10px; padding:11px 18px; font-size:14px; font-weight:700; border:0;
+}
+.cta { background:var(--btn); color:var(--btn-ink); }
+.ghost { background:transparent; color:var(--ink); border:1px solid var(--line); }
+.variants { display:flex; flex-wrap:wrap; gap:8px; margin: 0 0 22px; }
+.variant, .jump {
+  border:1px solid var(--line); background:transparent; color:var(--ink);
+  border-radius:999px; padding:6px 12px; font-size:13px;
+}
+.variant.on, .jump.on { border-color:var(--ink); background:var(--ink); color:var(--paper); }
+.toolbar { display:flex; align-items:center; justify-content:space-between; gap:12px; margin: 8px 0 16px; }
+.serv {
+  display:inline-flex; align-items:center; gap:10px; border:1px solid var(--line);
+  border-radius:999px; padding:4px 8px;
+}
+.serv button {
+  width:28px; height:28px; border:0; background:transparent; color:var(--ink); font-size:18px; line-height:1;
+}
+.serv b { min-width:64px; text-align:center; font-variant-numeric:tabular-nums; font-weight:600; font-size:14px; }
+h2 { font-size:15px; margin: 28px 0 10px; }
+.ghead { font-size:12px; color:var(--mute); letter-spacing:.08em; margin:18px 0 4px; }
+.ings { list-style:none; }
+.ings li { display:flex; justify-content:space-between; gap:16px; padding:8px 0; border-bottom:1px solid var(--line); font-size:15px; }
+.ings .g { font-variant-numeric:tabular-nums; color:var(--sub); white-space:nowrap; }
+.badge { font-size:10px; font-weight:700; margin-left:6px; padding:1px 5px; border-radius:3px; vertical-align:middle; }
+.b-rag { color:var(--rag); border:1px solid var(--rag); }
+.b-web { color:var(--web); border:1px solid var(--web); }
+.b-unv { color:var(--unv); border:1px solid var(--unv); }
+.note { color:var(--sub); font-size:13.5px; margin-top:10px; }
+.steps { list-style:none; }
+.steps li {
+  display:grid; grid-template-columns: 28px 1fr; gap:10px; padding:14px 0;
+  border-bottom:1px solid var(--line); cursor:pointer;
+}
+.num {
+  width:24px; height:24px; border-radius:50%; border:1px solid var(--line);
+  display:flex; align-items:center; justify-content:center; font-size:12px; color:var(--sub); margin-top:2px;
+}
+.steps strong { display:block; font-size:15px; }
+.steps .clock { font-variant-numeric:tabular-nums; color:var(--mute); font-size:12px; margin-left:8px; font-weight:500; }
+.steps span { display:block; color:var(--sub); font-size:13.5px; margin-top:4px; }
+.status { font-size:12px; color:var(--unv); margin-top:8px; }
+.timeline { list-style:none; margin:0 0 18px; }
+.timeline li { display:grid; grid-template-columns: 56px 1fr; gap:10px; padding:10px 0; border-bottom:1px solid var(--line); font-size:14px; }
+.timeline .t { font-variant-numeric:tabular-nums; color:var(--mute); }
+.fb { margin-top:36px; padding-top:16px; border-top:1px solid var(--line); }
+.fb textarea {
+  width:100%; min-height:88px; margin:8px 0; padding:10px;
+  border:1px solid var(--line); border-radius:8px; background:var(--card); color:var(--ink);
+  font-family:inherit; font-size:14px;
+}
+.fb .row { display:flex; flex-wrap:wrap; gap:8px; margin:8px 0; }
+.fb button {
+  border:1px solid var(--line); background:transparent; color:var(--ink);
+  border-radius:999px; padding:6px 12px; font-size:13px;
+}
+.fb button.on { background:var(--ink); color:var(--paper); }
+.fb .saved { font-size:12px; color:var(--mute); min-height:1.2em; }
+#cook {
+  display:none; position:fixed; inset:0; background:var(--paper); z-index:10;
+  flex-direction:column;
+}
+#cook.on { display:flex; }
+.cook-top {
+  height:56px; display:flex; align-items:center; gap:10px;
+  padding:0 12px; border-bottom:1px solid var(--line); flex:0 0 auto;
+}
+.cook-top img { width:28px; height:28px; object-fit:cover; border-radius:6px; }
+.cook-top .ttl { font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; flex:1; }
+.x, .listbtn {
+  border:0; background:transparent; color:var(--ink); font-size:15px; line-height:1;
+  padding:8px 10px; font-weight:700;
+}
+.prog { height:3px; background:var(--line); flex:0 0 auto; }
+.prog > i { display:block; height:3px; width:0; background:var(--bar); }
+.stage {
+  flex:1; display:flex; flex-direction:column; justify-content:flex-start;
+  padding: 20px 22px 8px; max-width:720px; margin:0 auto; width:100%;
+  overflow:auto;
+}
+.sec { font-size:12px; letter-spacing:.14em; color:var(--mute); margin-bottom:8px; }
+.chips { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
+.chip {
+  font-size:11px; border:1px solid var(--line); border-radius:999px; padding:3px 8px; color:var(--sub);
+}
+.stage h2 { font-size: clamp(22px, 4.4vw, 30px); margin:0 0 12px; line-height:1.35; }
+.stage p { font-size:16px; color:var(--sub); max-width:38em; }
+.hint { margin-top:14px; padding:12px 14px; background:var(--soft); border-radius:10px; font-size:13.5px; color:var(--sub); }
+.cook-nav {
+  flex:0 0 auto;
+  display:grid; grid-template-columns: 1fr auto 1fr; gap:10px; align-items:center;
+  padding: 12px 16px calc(16px + env(safe-area-inset-bottom));
+  border-top:1px solid var(--line); background:var(--paper);
+}
+.nav-btn {
+  height:48px; border:0; border-radius:12px; font-size:15px; font-weight:700;
+}
+.nav-btn.prev, .nav-btn.next { background:var(--btn); color:var(--btn-ink); }
+.nav-btn:disabled { opacity:.28; }
+.cook-nav .pos { font-size:13px; color:var(--sub); font-variant-numeric:tabular-nums; text-align:center; }
+#index {
+  display:none; position:fixed; inset:0; background:var(--paper); z-index:12;
+  flex-direction:column;
+}
+#index.on { display:flex; }
+#index .cook-top { flex:0 0 auto; }
+#index ol { list-style:none; overflow:auto; padding:8px 20px 40px; }
+#index li { padding:12px 0; border-bottom:1px solid var(--line); cursor:pointer; }
+#index strong { display:block; }
+#index em { font-style:normal; color:var(--mute); font-size:12px; font-variant-numeric:tabular-nums; }
+@media (max-width: 740px) {
+  .hero { grid-template-columns:1fr; gap:18px; }
+}
+@media print {
+  #cook, #index, .cta, .ghost, .serv button { display:none !important; }
+}
+</style>
+</head>
+<body>
+<div id="overview"><div class="hero">
+  
+  <div>
+    <div class="kicker">COLD / DASHI</div>
+    <h1>モロヘイヤと釜揚げしらすの冷たいスープ</h1>
+    <p class="lead">塩ゆでして叩いたモロヘイヤを冷だしと白醤油でのばす。しらすは直前。</p>
+    <div class="meta">5ステップ ・ 約40分（冷却込み）</div>
+    <div class="cta-row">
+    <button class="cta" type="button" id="start">調理を開始</button>
+    <button class="ghost" type="button" id="jump-flow">工程一覧</button>
+    </div>
+    <div class="status">※未検証</div>
+  </div>
+</div>
+
+
+
+
+<div class="toolbar"><h2 style="margin:0">材料</h2>
+  <div class="serv"><button type="button" id="minus" aria-label="減らす">-</button><b id="sv">2 人前</b><button type="button" id="plus" aria-label="増やす">+</button></div>
+</div>
+<ul class="ings" id="ings"><li data-name="モロヘイヤ（葉）"><span>モロヘイヤ（葉）<span class="badge b-web">Web</span></span><span class="g">80 g</span></li><li data-name="釜揚げしらす"><span>釜揚げしらす<span class="badge b-unv">未検証</span></span><span class="g">40 g</span></li><li data-name="出汁"><span>出汁<span class="badge b-web">Web</span></span><span class="g">400 g</span></li><li data-name="白醤油"><span>白醤油<span class="badge b-unv">未検証</span></span><span class="g">8 g</span></li><li data-name="塩（ゆで湯）"><span>塩（ゆで湯）<span class="badge b-web">Web</span></span><span class="g">10 g</span></li><li data-name="真昆布"><span>真昆布<span class="badge b-web">Web</span></span><span class="g">5 g</span></li><li data-name="かつお節"><span>かつお節<span class="badge b-web">Web</span></span><span class="g">8 g</span></li><li data-name="水（出汁）"><span>水（出汁）<span class="badge b-web">Web</span></span><span class="g">450 g</span></li></ul>
+<p class="note">献立では出汁を茶碗蒸しと共用してよい。</p>
+<h2>ステップ</h2>
+<ol class="steps" id="slist"><li data-i="0"><div class="num">1</div><div><strong>葉を外して洗う</strong><span>硬い茎は除く。葉を流水でふり洗いする。[Web]</span></div></li><li data-i="1"><div class="num">2</div><div><strong>出汁を冷やす</strong><span>水450g＋昆布5gを20分。沸騰直前で昆布を上げ、かつお節8gを2分浸して濾す。氷水で冷やす。</span></div></li><li data-i="2"><div class="num">3</div><div><strong>塩ゆで15〜20秒</strong><span>沸騰湯に塩10g。葉を15〜20秒。色が鮮やかになったら氷水へ。茎を使うなら先に40秒。[Web]</span></div></li><li data-i="3"><div class="num">4</div><div><strong>叩いて粘りを出す</strong><span>水気は軽く切る。強く絞らない。たたくように刻む。細かいほど粘る。[Web]</span></div></li><li data-i="4"><div class="num">5</div><div><strong>冷だしと合わせる</strong><span>出汁400g＋白醤油8g。モロヘイヤを溶かす。冷蔵30分以上。しらす40gは器に盛る直前。再加熱しない。※未検証</span></div></li></ol>
+<p class="note">粘りは刻んだあとに出る水溶性食物繊維。熱いまま合わせると風味は立つが、冷製は一度冷やすと舌触りが安定する。しらすのカルシウムはシュウ酸と結合しやすい。白醤油は色を濁らせにくい。</p>
+<p class="note">出典：[Web] Kagome 15-20秒、キッコーマン叩き、mololab粘り [RAG] モロヘイヤ叩き（冷奴トッピング近接）</p>
+<section class="fb" id="fb"><h2>感想</h2><p class="note">実食後に書く。次回この料理を出すとき、チャットへ貼ればレシピと手順が更新される。</p><div class="row"><button type="button" data-rate="good">再現する</button><button type="button" data-rate="ok">調整して再現</button><button type="button" data-rate="bad">このままやらない</button></div><textarea id="fb-text" placeholder="例：COSORI 190C18分は皮が薄い。16分で足りた。ガレットは絞り不足で蒸れた。"></textarea><div class="row"><button type="button" id="fb-save">この端末に残す</button><button type="button" id="fb-copy">チャット用にコピー</button></div><p class="saved" id="fb-msg"></p></section>
+<img id="preload-thumb" src="" alt="" hidden></div>
+<div id="cook" aria-hidden="true">
+  <div class="cook-top">
+    <img id="cook-thumb" alt="">
+    <div class="ttl" id="cook-title"></div>
+    <button class="listbtn" id="open-index" type="button">一覧</button>
+    <button class="x" id="close" type="button" aria-label="概略に戻る">閉じる</button>
+  </div>
+  <div class="prog"><i id="prog"></i></div>
+  <div class="stage">
+    <div class="sec" id="cook-sec"></div>
+    <div class="chips" id="cook-chips"></div>
+    <h2 id="cook-h"></h2>
+    <p id="cook-b"></p>
+    <div class="hint" id="cook-hint" hidden></div>
+  </div>
+  <div class="cook-nav">
+    <button type="button" class="nav-btn prev" id="prev">前へ</button>
+    <div class="pos" id="pos"></div>
+    <button type="button" class="nav-btn next" id="next">次へ</button>
+  </div>
+</div>
+<div id="index" aria-hidden="true">
+  <div class="cook-top">
+    <div class="ttl">工程一覧</div>
+    <button class="x" id="close-index" type="button">戻る</button>
+  </div>
+  <ol id="index-list"></ol>
+</div>
+<script id="recipe-data" type="application/json">{"title":"モロヘイヤと釜揚げしらすの冷たいスープ","eyebrow":"COLD / DASHI","lead":"塩ゆでして叩いたモロヘイヤを冷だしと白醤油でのばす。しらすは直前。","base_servings":2,"time":"約40分（冷却込み）","status":"※未検証","ingredients":[{"name":"モロヘイヤ（葉）","g":80.0,"badge":"web"},{"name":"釜揚げしらす","g":40.0,"badge":"unverified"},{"name":"出汁","g":400.0,"badge":"web"},{"name":"白醤油","g":8.0,"badge":"unverified"},{"name":"塩（ゆで湯）","g":10.0,"badge":"web"},{"name":"真昆布","g":5.0,"badge":"web"},{"name":"かつお節","g":8.0,"badge":"web"},{"name":"水（出汁）","g":450.0,"badge":"web"}],"ingredient_note":"献立では出汁を茶碗蒸しと共用してよい。","prep":[{"heading":"葉を外して洗う","body":"硬い茎は除く。葉を流水でふり洗いする。[Web]"},{"heading":"出汁を冷やす","body":"水450g＋昆布5gを20分。沸騰直前で昆布を上げ、かつお節8gを2分浸して濾す。氷水で冷やす。"}],"cook":[{"heading":"塩ゆで15〜20秒","body":"沸騰湯に塩10g。葉を15〜20秒。色が鮮やかになったら氷水へ。茎を使うなら先に40秒。[Web]"},{"heading":"叩いて粘りを出す","body":"水気は軽く切る。強く絞らない。たたくように刻む。細かいほど粘る。[Web]"},{"heading":"冷だしと合わせる","body":"出汁400g＋白醤油8g。モロヘイヤを溶かす。冷蔵30分以上。しらす40gは器に盛る直前。再加熱しない。※未検証"}],"science":"粘りは刻んだあとに出る水溶性食物繊維。熱いまま合わせると風味は立つが、冷製は一度冷やすと舌触りが安定する。しらすのカルシウムはシュウ酸と結合しやすい。白醤油は色を濁らせにくい。","notes":["RAG完全一致なし。Webの茹でと叩きを転用したオリジナル組成。"],"sources":"[Web] Kagome 15-20秒、キッコーマン叩き、mololab粘り [RAG] モロヘイヤ叩き（冷奴トッピング近接）","images":[],"variants":[]}</script>
+<script>
+(function () {
+  var el = document.getElementById("recipe-data");
+  var data = JSON.parse(el.textContent);
+  var base = Number(data.base_servings || 2);
+  var servings = base;
+  var variantId = (data.variants && data.variants[0] && data.variants[0].id) || null;
+  var step = 0;
+  var steps = [];
+  function pushSteps(arr, sec) {
+    (arr || []).forEach(function (s) {
+      steps.push({
+        sec: sec,
+        heading: s.heading,
+        body: s.body,
+        clock: s.clock || "",
+        dish: s.dish || "",
+        temp: s.temp || "",
+        parallel: s.parallel || "",
+        hint: s.hint || ""
+      });
+    });
+  }
+  pushSteps(data.prep, "下処理");
+  pushSteps(data.cook, "作り方");
+
+  function overrideG(name) {
+    var vs = data.variants || [];
+    var v = null;
+    for (var i = 0; i < vs.length; i++) { if (vs[i].id === variantId) v = vs[i]; }
+    if (!v || !v.overrides || v.overrides[name] == null) return null;
+    return Number(v.overrides[name]);
+  }
+  function gramsFor(ing) {
+    var raw = overrideG(ing.name);
+    var g = raw == null ? Number(ing.g) : raw;
+    if (!isFinite(g)) return "";
+    return String(Math.max(1, Math.round(g * servings / base))) + " g";
+  }
+  function refreshAmounts() {
+    var label = document.getElementById("sv");
+    if (label) label.textContent = String(servings) + " 人前";
+    var rows = document.querySelectorAll("#ings li[data-name]");
+    var ings = data.ingredients || [];
+    for (var i = 0; i < rows.length; i++) {
+      var name = rows[i].getAttribute("data-name");
+      var ing = null;
+      for (var j = 0; j < ings.length; j++) {
+        if (ings[j].name === name) ing = ings[j];
+      }
+      if (!ing && ings[i]) ing = ings[i];
+      if (!ing) continue;
+      var gEl = rows[i].querySelector(".g");
+      if (gEl) gEl.textContent = gramsFor(ing);
+    }
+    document.querySelectorAll(".variant").forEach(function (btn) {
+      if (btn.getAttribute("data-v") === variantId) btn.classList.add("on");
+      else btn.classList.remove("on");
+    });
+  }
+  function showStep() {
+    var s = steps[step];
+    document.getElementById("cook-sec").textContent = s.sec + (s.clock ? "  " + s.clock : "");
+    document.getElementById("cook-h").textContent = s.heading;
+    document.getElementById("cook-b").textContent = s.body;
+    var chips = [];
+    if (s.dish) chips.push(s.dish);
+    if (s.temp) chips.push(s.temp);
+    if (s.parallel) chips.push("同時: " + s.parallel);
+    var box = document.getElementById("cook-chips");
+    box.innerHTML = chips.map(function (c) { return '<span class="chip">' + c + "</span>"; }).join("");
+    var hint = document.getElementById("cook-hint");
+    if (s.hint) { hint.hidden = false; hint.textContent = s.hint; }
+    else { hint.hidden = true; hint.textContent = ""; }
+    document.getElementById("pos").textContent = (step + 1) + " / " + steps.length;
+    document.getElementById("prev").disabled = step === 0;
+    document.getElementById("next").disabled = step === steps.length - 1;
+    document.getElementById("next").textContent = step === steps.length - 1 ? "完了" : "次へ";
+    var pct = steps.length ? Math.round(((step + 1) / steps.length) * 100) : 0;
+    document.getElementById("prog").style.width = pct + "%";
+  }
+  function openCook(i) {
+    step = i;
+    document.getElementById("cook").classList.add("on");
+    document.getElementById("cook").setAttribute("aria-hidden", "false");
+    document.getElementById("index").classList.remove("on");
+    showStep();
+  }
+  function closeCook() {
+    document.getElementById("cook").classList.remove("on");
+    document.getElementById("cook").setAttribute("aria-hidden", "true");
+  }
+  function fillIndex() {
+    var ol = document.getElementById("index-list");
+    ol.innerHTML = steps.map(function (s, i) {
+      return "<li data-i=\"" + i + "\"><em>" + (i + 1) + (s.clock ? "  " + s.clock : "") + "</em><strong>" + s.heading + "</strong></li>";
+    }).join("");
+    ol.querySelectorAll("li").forEach(function (li) {
+      li.addEventListener("click", function () { openCook(Number(li.getAttribute("data-i"))); });
+    });
+  }
+
+  var start = document.getElementById("start");
+  if (start) start.addEventListener("click", function () { openCook(0); });
+  var jumpFlow = document.getElementById("jump-flow");
+  if (jumpFlow) jumpFlow.addEventListener("click", function () { fillIndex(); document.getElementById("index").classList.add("on"); });
+  var minus = document.getElementById("minus");
+  var plus = document.getElementById("plus");
+  if (minus) minus.addEventListener("click", function () {
+    if (servings > 1) { servings -= 1; refreshAmounts(); }
+  });
+  if (plus) plus.addEventListener("click", function () {
+    servings += 1; refreshAmounts();
+  });
+  document.querySelectorAll(".variant").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      variantId = btn.getAttribute("data-v");
+      refreshAmounts();
+    });
+  });
+  document.querySelectorAll("#slist li").forEach(function (li) {
+    li.addEventListener("click", function () {
+      openCook(Number(li.getAttribute("data-i")));
+    });
+  });
+  document.getElementById("prev").addEventListener("click", function () {
+    if (step > 0) { step -= 1; showStep(); }
+  });
+  document.getElementById("next").addEventListener("click", function () {
+    if (step < steps.length - 1) { step += 1; showStep(); }
+    else closeCook();
+  });
+  document.getElementById("close").addEventListener("click", closeCook);
+  document.getElementById("open-index").addEventListener("click", function () {
+    fillIndex();
+    document.getElementById("index").classList.add("on");
+  });
+  document.getElementById("close-index").addEventListener("click", function () {
+    document.getElementById("index").classList.remove("on");
+  });
+  document.addEventListener("keydown", function (e) {
+    if (document.getElementById("index").classList.contains("on") && e.key === "Escape") {
+      document.getElementById("index").classList.remove("on");
+      return;
+    }
+    if (!document.getElementById("cook").classList.contains("on")) return;
+    if (e.key === "ArrowRight" || e.key === " ") {
+      e.preventDefault();
+      if (step < steps.length - 1) { step += 1; showStep(); }
+    }
+    if (e.key === "ArrowLeft" && step > 0) { step -= 1; showStep(); }
+    if (e.key === "Escape") closeCook();
+  });
+  var sx = null;
+  document.getElementById("cook").addEventListener("touchstart", function (e) {
+    sx = e.changedTouches[0].screenX;
+  }, { passive: true });
+  document.getElementById("cook").addEventListener("touchend", function (e) {
+    if (sx == null) return;
+    var dx = e.changedTouches[0].screenX - sx;
+    sx = null;
+    if (dx < -40 && step < steps.length - 1) { step += 1; showStep(); }
+    if (dx > 40 && step > 0) { step -= 1; showStep(); }
+  });
+
+  var imgs = data.images || [];
+  if (imgs[0]) document.getElementById("cook-thumb").src = imgs[0].src;
+  document.getElementById("cook-title").textContent = data.title;
+  refreshAmounts();
+
+  var fbKey = "recipe-fb:" + (data.title || "");
+  var fbText = document.getElementById("fb-text");
+  var fbMsg = document.getElementById("fb-msg");
+  var rate = "ok";
+  try {
+    var saved = JSON.parse(localStorage.getItem(fbKey) || "null");
+    if (saved) {
+      rate = saved.rate || "ok";
+      if (fbText && saved.text) fbText.value = saved.text;
+      if (fbMsg) fbMsg.textContent = "この端末に前回の感想あり";
+    }
+  } catch (err) {}
+  document.querySelectorAll("#fb [data-rate]").forEach(function (btn) {
+    if (btn.getAttribute("data-rate") === rate) btn.classList.add("on");
+    btn.addEventListener("click", function () {
+      rate = btn.getAttribute("data-rate");
+      document.querySelectorAll("#fb [data-rate]").forEach(function (b) {
+        b.classList.toggle("on", b === btn);
+      });
+    });
+  });
+  function packFb() {
+    var text = fbText ? fbText.value.trim() : "";
+    return {
+      title: data.title,
+      rate: rate,
+      text: text,
+      memo: "【感想】" + data.title + " / " + rate + " / " + text
+    };
+  }
+  var saveBtn = document.getElementById("fb-save");
+  if (saveBtn) saveBtn.addEventListener("click", function () {
+    var pack = packFb();
+    try { localStorage.setItem(fbKey, JSON.stringify(pack)); } catch (err) {}
+    if (fbMsg) fbMsg.textContent = "この端末に保存した。チャットへ貼ると正本になる。";
+  });
+  var copyBtn = document.getElementById("fb-copy");
+  if (copyBtn) copyBtn.addEventListener("click", function () {
+    var pack = packFb();
+    var done = function () {
+      if (fbMsg) fbMsg.textContent = "コピーした。チャットに貼る。";
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(pack.memo).then(done).catch(done);
+    } else {
+      done();
+    }
+  });
+})();
+</script>
+</body>
+</html>
