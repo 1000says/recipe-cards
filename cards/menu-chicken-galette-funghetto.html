@@ -1,1 +1,439 @@
-<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>献立の流れ</title><style>:root{--paper:#FAFAF7;--ink:#161616;--sub:#6A6A6A;--line:#E6E4DC;}body{font-family:Hiragino Sans,sans-serif;background:var(--paper);color:var(--ink);line-height:1.7;margin:0}#o{max-width:720px;margin:0 auto;padding:28px 20px}h1{font-size:28px;line-height:1.3}li{margin:0 0 8px}</style></head><body><div id="o"><h1>献立の流れ：鶏ラビゴット、ガレット、フンゲット</h1><p>総時間約50分。COSORIはなす→鶏。肉とガレットは熱々。フンゲットとソースは常温。</p><h2>時計</h2><ol><li>0:00 ラビゴット乳化。鶏に塩。なすに塩</li><li>0:15 なす COSORI 180C 14分</li><li>0:22 ガレット片面。なすはトマトと合わせ常温</li><li>0:30 鶏 190C 18分。ガレットを返す</li><li>0:48 鶏を3分休ませて盛る</li></ol></div></body></html>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>献立の流れ：鶏ラビゴット、ガレット、フンゲット</title>
+<style>
+:root {
+  --paper:#FAFAF7; --ink:#161616; --sub:#6A6A6A; --mute:#8A8A8A;
+  --line:#E6E4DC; --card:#fff; --btn:#161616; --btn-ink:#fff;
+  --rag:#2E5E42; --web:#3A6EA5; --unv:#A8762A; --soft:#F3F1EA; --bar:#161616;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper:#121212; --ink:#F2EFE6; --sub:#A7A49A; --mute:#8A877E;
+    --line:#2A2A2A; --card:#1A1A1A; --btn:#F2EFE6; --btn-ink:#121212;
+    --rag:#8FC79F; --web:#7AA7D4; --unv:#D7A35A; --soft:#1E1E1E; --bar:#F2EFE6;
+  }
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+html, body { min-height:100%; }
+body {
+  font-family: "Hiragino Sans", "Noto Sans CJK JP", "Noto Sans JP", sans-serif;
+  background: var(--paper); color: var(--ink); line-height:1.7;
+}
+button { font-family: inherit; cursor: pointer; }
+#overview { max-width: 920px; margin: 0 auto; padding: 28px 20px 96px; }
+.hero { display:grid; grid-template-columns: 1.05fr 1fr; gap: 32px; align-items:center; margin-bottom: 28px; }
+.photos { display:grid; grid-template-columns: 1fr 1fr; gap:8px; }
+.photos img { width:100%; height:100%; object-fit:cover; border-radius:12px; display:block; background:var(--soft); }
+.photos.n1 { grid-template-columns:1fr; }
+.photos.n1 img { max-height:340px; }
+.photos.n3 img:first-child { grid-row: span 2; min-height:220px; }
+.kicker { font-size:12px; color:var(--mute); margin-bottom:10px; letter-spacing:.12em; }
+h1 { font-size: clamp(26px, 4vw, 36px); line-height:1.3; font-weight:700; letter-spacing:-0.02em; margin-bottom:12px; }
+.lead { color:var(--sub); font-size:15px; margin-bottom:14px; }
+.meta { color:var(--mute); font-size:13px; margin-bottom:18px; }
+.cta-row { display:flex; flex-wrap:wrap; gap:8px; }
+.cta, .ghost {
+  display:inline-flex; align-items:center; justify-content:center;
+  border-radius:10px; padding:11px 18px; font-size:14px; font-weight:700; border:0;
+}
+.cta { background:var(--btn); color:var(--btn-ink); }
+.ghost { background:transparent; color:var(--ink); border:1px solid var(--line); }
+.variants { display:flex; flex-wrap:wrap; gap:8px; margin: 0 0 22px; }
+.variant, .jump {
+  border:1px solid var(--line); background:transparent; color:var(--ink);
+  border-radius:999px; padding:6px 12px; font-size:13px;
+}
+.variant.on, .jump.on { border-color:var(--ink); background:var(--ink); color:var(--paper); }
+.toolbar { display:flex; align-items:center; justify-content:space-between; gap:12px; margin: 8px 0 16px; }
+.serv {
+  display:inline-flex; align-items:center; gap:10px; border:1px solid var(--line);
+  border-radius:999px; padding:4px 8px;
+}
+.serv button {
+  width:28px; height:28px; border:0; background:transparent; color:var(--ink); font-size:18px; line-height:1;
+}
+.serv b { min-width:64px; text-align:center; font-variant-numeric:tabular-nums; font-weight:600; font-size:14px; }
+h2 { font-size:15px; margin: 28px 0 10px; }
+.ghead { font-size:12px; color:var(--mute); letter-spacing:.08em; margin:18px 0 4px; }
+.ings { list-style:none; }
+.ings li { display:flex; justify-content:space-between; gap:16px; padding:8px 0; border-bottom:1px solid var(--line); font-size:15px; }
+.ings .g { font-variant-numeric:tabular-nums; color:var(--sub); white-space:nowrap; }
+.badge { font-size:10px; font-weight:700; margin-left:6px; padding:1px 5px; border-radius:3px; vertical-align:middle; }
+.b-rag { color:var(--rag); border:1px solid var(--rag); }
+.b-web { color:var(--web); border:1px solid var(--web); }
+.b-unv { color:var(--unv); border:1px solid var(--unv); }
+.note { color:var(--sub); font-size:13.5px; margin-top:10px; }
+.steps { list-style:none; }
+.steps li {
+  display:grid; grid-template-columns: 28px 1fr; gap:10px; padding:14px 0;
+  border-bottom:1px solid var(--line); cursor:pointer;
+}
+.num {
+  width:24px; height:24px; border-radius:50%; border:1px solid var(--line);
+  display:flex; align-items:center; justify-content:center; font-size:12px; color:var(--sub); margin-top:2px;
+}
+.steps strong { display:block; font-size:15px; }
+.steps .clock { font-variant-numeric:tabular-nums; color:var(--mute); font-size:12px; margin-left:8px; font-weight:500; }
+.steps span { display:block; color:var(--sub); font-size:13.5px; margin-top:4px; }
+.status { font-size:12px; color:var(--unv); margin-top:8px; }
+.timeline { list-style:none; margin:0 0 18px; }
+.timeline li { display:grid; grid-template-columns: 56px 1fr; gap:10px; padding:10px 0; border-bottom:1px solid var(--line); font-size:14px; }
+.timeline .t { font-variant-numeric:tabular-nums; color:var(--mute); }
+.fb { margin-top:36px; padding-top:16px; border-top:1px solid var(--line); }
+.fb textarea {
+  width:100%; min-height:88px; margin:8px 0; padding:10px;
+  border:1px solid var(--line); border-radius:8px; background:var(--card); color:var(--ink);
+  font-family:inherit; font-size:14px;
+}
+.fb .row { display:flex; flex-wrap:wrap; gap:8px; margin:8px 0; }
+.fb button {
+  border:1px solid var(--line); background:transparent; color:var(--ink);
+  border-radius:999px; padding:6px 12px; font-size:13px;
+}
+.fb button.on { background:var(--ink); color:var(--paper); }
+.fb .saved { font-size:12px; color:var(--mute); min-height:1.2em; }
+#cook {
+  display:none; position:fixed; inset:0; background:var(--paper); z-index:10;
+  flex-direction:column;
+}
+#cook.on { display:flex; }
+.cook-top {
+  height:56px; display:flex; align-items:center; gap:10px;
+  padding:0 12px; border-bottom:1px solid var(--line); flex:0 0 auto;
+}
+.cook-top img { width:28px; height:28px; object-fit:cover; border-radius:6px; }
+.cook-top .ttl { font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; flex:1; }
+.x, .listbtn {
+  border:0; background:transparent; color:var(--ink); font-size:15px; line-height:1;
+  padding:8px 10px; font-weight:700;
+}
+.prog { height:3px; background:var(--line); flex:0 0 auto; }
+.prog > i { display:block; height:3px; width:0; background:var(--bar); }
+.stage {
+  flex:1; display:flex; flex-direction:column; justify-content:flex-start;
+  padding: 20px 22px 8px; max-width:720px; margin:0 auto; width:100%;
+  overflow:auto;
+}
+.sec { font-size:12px; letter-spacing:.14em; color:var(--mute); margin-bottom:8px; }
+.chips { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
+.chip {
+  font-size:11px; border:1px solid var(--line); border-radius:999px; padding:3px 8px; color:var(--sub);
+}
+.stage h2 { font-size: clamp(22px, 4.4vw, 30px); margin:0 0 12px; line-height:1.35; }
+.stage p { font-size:16px; color:var(--sub); max-width:38em; }
+.hint { margin-top:14px; padding:12px 14px; background:var(--soft); border-radius:10px; font-size:13.5px; color:var(--sub); }
+.cook-nav {
+  flex:0 0 auto;
+  display:grid; grid-template-columns: 1fr auto 1fr; gap:10px; align-items:center;
+  padding: 12px 16px calc(16px + env(safe-area-inset-bottom));
+  border-top:1px solid var(--line); background:var(--paper);
+}
+.nav-btn {
+  height:48px; border:0; border-radius:12px; font-size:15px; font-weight:700;
+}
+.nav-btn.prev, .nav-btn.next { background:var(--btn); color:var(--btn-ink); }
+.nav-btn:disabled { opacity:.28; }
+.cook-nav .pos { font-size:13px; color:var(--sub); font-variant-numeric:tabular-nums; text-align:center; }
+#index {
+  display:none; position:fixed; inset:0; background:var(--paper); z-index:12;
+  flex-direction:column;
+}
+#index.on { display:flex; }
+#index .cook-top { flex:0 0 auto; }
+#index ol { list-style:none; overflow:auto; padding:8px 20px 40px; }
+#index li { padding:12px 0; border-bottom:1px solid var(--line); cursor:pointer; }
+#index strong { display:block; }
+#index em { font-style:normal; color:var(--mute); font-size:12px; font-variant-numeric:tabular-nums; }
+@media (max-width: 740px) {
+  .hero { grid-template-columns:1fr; gap:18px; }
+}
+@media print {
+  #cook, #index, .cta, .ghost, .serv button { display:none !important; }
+}
+</style>
+</head>
+<body>
+<div id="overview"><div class="hero">
+  
+  <div>
+    <div class="kicker">MENU / FLOW</div>
+    <h1>献立の流れ：鶏ラビゴット、ガレット、フンゲット</h1>
+    <p class="lead">この1枚で3皿の全工程を進める。常温のソースとなすを先に置き、COSORIはなす→鶏。ガレットは熱々で切る。</p>
+    <div class="meta">12ステップ ・ 約50分</div>
+    <div class="cta-row">
+    <button class="cta" type="button" id="start">調理を開始</button>
+    <button class="ghost" type="button" id="jump-flow">工程一覧</button>
+    </div>
+    <div class="status">※未実食</div>
+  </div>
+</div>
+<div class="variants"><button type="button" class="variant on" data-v="standard">2人</button></div>
+<h2>皿と提供温度</h2><ul class="ings"><li><span>鶏もものCOSORIグリル、ラビゴット</span><span class="g">肉は熱々 / ソースは常温</span></li><li><span>ゆでじゃがいものガレット</span><span class="g">熱々</span></li><li><span>千両なすのフンゲット</span><span class="g">温または常温</span></li></ul>
+<h2>同時進行</h2><ol class="timeline"><li><span class="t">0:00</span><span>ソース乳化、鶏となすに塩 ・ 常温<br>熱を使わない仕込みを先に閉じる。なすと鶏の塩は同時に15分取る。</span></li><li><span class="t">0:15</span><span>なすをCOSORI 180C14分 ・ 常温可<br>拭いてEV15g。7分で一度振る。出し終わったらトマトと合わせて常温置き。</span></li><li><span class="t">0:18</span><span>芋を千切りして絞る ・ —<br>水洗いしない。布巾で強く絞る。フライパンを同時に熱する。</span></li><li><span class="t">0:22</span><span>ガレット片面8分。なすを合わせる ・ なすは常温へ<br>厚さ1.5cm、動かさない。トマトは7〜10分で汁だけ残す。</span></li><li><span class="t">0:30</span><span>鶏を190C18分。ガレットを返す ・ 熱々へ<br>皮を上。返さない。中心74C。ガレット裏面7分。</span></li><li><span class="t">0:48</span><span>鶏を3分休ませて盛る ・ 熱々＋常温<br>ソースは肉の周囲。フンゲットは常温のまま。ガレットは直前に切る。</span></li></ol>
+<p class="note">先にやってよい：ラビゴットは朝に作って冷蔵可。出す30分前に室温へ戻す / ゆで芋は既にある。切るのは焼く直前 / なすの塩15分は開始と同時に始める</p>
+<div class="toolbar"><h2 style="margin:0">材料</h2>
+  <div class="serv"><button type="button" id="minus" aria-label="減らす">-</button><b id="sv">2 人前</b><button type="button" id="plus" aria-label="増やす">+</button></div>
+</div>
+<ul class="ings" id="ings"><li class="ghead">鶏とソース</li><li data-name="鶏もも（皮付き・骨なし）"><span>鶏もも（皮付き・骨なし）<span class="badge b-unv">未検証</span></span><span class="g">350 g</span></li><li data-name="塩（肉）"><span>塩（肉）<span class="badge b-unv">未検証</span></span><span class="g">4 g</span></li><li data-name="黒胡椒（肉）"><span>黒胡椒（肉）<span class="badge b-unv">未検証</span></span><span class="g">1 g</span></li><li data-name="EVオリーブ油（肉）"><span>EVオリーブ油（肉）<span class="badge b-unv">未検証</span></span><span class="g">8 g</span></li><li data-name="白ワインヴィネガー"><span>白ワインヴィネガー<span class="badge b-rag">RAG</span></span><span class="g">20 g</span></li><li data-name="EVオリーブ油（ソース）"><span>EVオリーブ油（ソース）<span class="badge b-rag">RAG</span></span><span class="g">30 g</span></li><li data-name="サラダ油（ソース）"><span>サラダ油（ソース）<span class="badge b-rag">RAG</span></span><span class="g">30 g</span></li><li data-name="タマネギ"><span>タマネギ<span class="badge b-rag">RAG</span></span><span class="g">20 g</span></li><li data-name="塩漬けケイパー"><span>塩漬けケイパー<span class="badge b-rag">RAG</span></span><span class="g">10 g</span></li><li data-name="イタリアンパセリ"><span>イタリアンパセリ<span class="badge b-rag">RAG</span></span><span class="g">3 g</span></li><li data-name="シブレット"><span>シブレット<span class="badge b-rag">RAG</span></span><span class="g">2 g</span></li><li data-name="エストラゴン"><span>エストラゴン<span class="badge b-rag">RAG</span></span><span class="g">2 g</span></li><li data-name="ディジョンマスタード"><span>ディジョンマスタード<span class="badge b-rag">RAG</span></span><span class="g">3 g</span></li><li data-name="塩（ソース）"><span>塩（ソース）<span class="badge b-unv">未検証</span></span><span class="g">2 g</span></li><li data-name="黒胡椒（ソース）"><span>黒胡椒（ソース）<span class="badge b-unv">未検証</span></span><span class="g">1 g</span></li><li class="ghead">ガレット</li><li data-name="ゆでじゃがいも（正味）"><span>ゆでじゃがいも（正味）<span class="badge b-web">Web</span></span><span class="g">400 g</span></li><li data-name="塩（ガレット）"><span>塩（ガレット）<span class="badge b-web">Web</span></span><span class="g">3 g</span></li><li data-name="黒胡椒（ガレット）"><span>黒胡椒（ガレット）<span class="badge b-unv">未検証</span></span><span class="g">1 g</span></li><li data-name="無塩バター"><span>無塩バター<span class="badge b-web">Web</span></span><span class="g">20 g</span></li><li data-name="サラダ油（ガレット）"><span>サラダ油（ガレット）<span class="badge b-web">Web</span></span><span class="g">10 g</span></li><li class="ghead">フンゲット</li><li data-name="千両なす"><span>千両なす<span class="badge b-web">Web</span></span><span class="g">500 g</span></li><li data-name="チェリートマト"><span>チェリートマト<span class="badge b-web">Web</span></span><span class="g">180 g</span></li><li data-name="ニンニク"><span>ニンニク<span class="badge b-web">Web</span></span><span class="g">6 g</span></li><li data-name="EVオリーブ油（なす）"><span>EVオリーブ油（なす）<span class="badge b-unv">未検証</span></span><span class="g">15 g</span></li><li data-name="EVオリーブ油（トマト）"><span>EVオリーブ油（トマト）<span class="badge b-web">Web</span></span><span class="g">20 g</span></li><li data-name="塩（なす下処理）"><span>塩（なす下処理）<span class="badge b-unv">未検証</span></span><span class="g">5 g</span></li><li data-name="塩（なす仕上げ）"><span>塩（なす仕上げ）<span class="badge b-unv">未検証</span></span><span class="g">2 g</span></li><li data-name="バジル（葉）"><span>バジル（葉）<span class="badge b-web">Web</span></span><span class="g">8 g</span></li><li data-name="黒胡椒（なす）"><span>黒胡椒（なす）<span class="badge b-unv">未検証</span></span><span class="g">1 g</span></li></ul>
+<p class="note">ケイパーはソースだけ。フンゲットには入れない。ゆで芋は既にある前提。人数+-は全皿比例。</p>
+<h2>ステップ</h2>
+<ol class="steps" id="slist"><li data-i="0"><div class="num">1</div><div><strong>時計と機材を決める<span class="clock">0:00</span></strong><span>総時間は約50分。COSORIは1槽なのでなすを先に通し、鶏を最後にする。フライパンはガレット専用。ソースとフンゲットは常温で置ける。鶏とガレットだけ熱々で出す。</span></div></li><li data-i="1"><div class="num">2</div><div><strong>タマネギとケイパーを処理する<span class="clock">0:00</span></strong><span>タマネギ20gをみじん切りにし、水に2分さらして強く絞る。塩漬けケイパー10gは塩を軽く洗い、粗みじん。パセリ3g、シブレット2g、エストラゴン2gを細かく切る。エストラゴンが無いときはパセリを2g足す。</span></div></li><li data-i="2"><div class="num">3</div><div><strong>ラビゴットを乳化させる<span class="clock">0:05</span></strong><span>ボウルに白ワインヴィネガー20g、ディジョン3g、塩2g、黒胡椒1gを溶く。EV30gとサラダ油30gを少しずつ加えて乳化させる。タマネギ、ケイパー、香草を混ぜ、室温に置く。朝作って冷蔵した場合は出す30分前に戻す。</span></div></li><li data-i="3"><div class="num">4</div><div><strong>鶏に塩をする<span class="clock">0:00</span></strong><span>鶏もも350gは筋を切り、両面を拭く。塩4gと黒胡椒1gを全面にすり込み、皮を上にして室温15分。火入れ直前にEV8gを薄く塗る。返して焼かない前提なので、皮面を整えておく。</span></div></li><li data-i="4"><div class="num">5</div><div><strong>なすを切って塩をする<span class="clock">0:00</span></strong><span>千両なす500gはへたを落とし、皮はむかず2〜2.5cm角にする。塩5gを振り15分置く。このあいだにソースと鶏の塩を進める。トマト180gは四分の一、ニンニク6gは薄切り、バジル8gは葉のまま待つ。</span></div></li><li data-i="5"><div class="num">6</div><div><strong>なすを拭いてCOSORIへ<span class="clock">0:15</span></strong><span>なすの表面の水気を完全に拭く。洗ったあとも絞って拭く。EV15gを絡め、180Cに予熱したCOSORIに一層に並べる。14分。7分で一度振る。</span></div></li><li data-i="6"><div class="num">7</div><div><strong>ゆで芋を千切りして絞る<span class="clock">0:18</span></strong><span>冷めたゆでじゃがいも400gは皮をむき、千切りスライサーでおろす。水洗いしない。布巾で強く絞る。塩3gと黒胡椒1gを混ぜる。フライパン24cmを中火で熱し始める。</span></div></li><li data-i="7"><div class="num">8</div><div><strong>なすを振り、ガレットを敷く<span class="clock">0:22</span></strong><span>COSORIのなすを一度振る。フライパンにサラダ油10gとバター10gを入れ、芋を厚さ1.5cmに均等に敷く。中弱火で8分、動かさない。縁が色づくまで待つ。</span></div></li><li data-i="8"><div class="num">9</div><div><strong>なすをトマトと合わせる<span class="clock">0:29</span></strong><span>なすをCOSORIから出す。別のフライパンにEV20g、ニンニクを弱火で香りが出るまで。チェリートマトを加えて中火7〜10分。トマトが崩れ、汁が少量残ったらなすを入れて2〜3分揺する。火を止め、塩2g、黒胡椒、バジルを手でちぎって入れる。ケイパーは入れない。常温に置く。</span></div></li><li data-i="9"><div class="num">10</div><div><strong>鶏をCOSORIへ、ガレットを返す<span class="clock">0:30</span></strong><span>COSORIを190Cに上げ、鶏は皮を上にして入れる。18分。返さない。厚いところの中心が74C。足りなければ皮を上のまま3分足す。同じ時間にガレットを皿で返し、裏面を7分。</span></div></li><li data-i="10"><div class="num">11</div><div><strong>鶏を休ませて切る<span class="clock">0:48</span></strong><span>鶏を取り出して3分休ませる。このあいだにガレットは火を止めてフライパンの中で待つ。斜めに切る。ソースは肉の周囲だけ。上に多量にかけない。</span></div></li><li data-i="11"><div class="num">12</div><div><strong>盛る<span class="clock">0:50</span></strong><span>ガレットは直前に切って熱々で出す。鶏も熱々。フンゲットは常温のままでよい。ラビゴットは鶏の周囲。3皿を同時に熱々にしない。</span></div></li></ol>
+<p class="note">1槽の対流は同時に2皿を焼けない。常温で成立する乳化となすを先に閉じ、メイラードが必要な皮とガレットを最後に残す。74Cでミオシンは固まりコラーゲンは溶け切らない。ゆで芋の表面のでんぷんは洗わず絞ると焼き網になる。トマトはなすの油を汁で切るが、ケイパーを足すとラビゴットと酸が重なる。</p>
+<p class="note">出典：複合。鶏[RAG]上柿元『ソース』 / [Web]USDA 74C。ガレット[RAG]音羽和紀 / [Web]ゆで芋ロスティ。フンゲット[Web]Sonia Peronaci トマト350g/なす1kg。</p>
+<section class="fb" id="fb"><h2>感想</h2><p class="note">実食後に書く。次回この料理を出すとき、チャットへ貼ればレシピと手順が更新される。</p><div class="row"><button type="button" data-rate="good">再現する</button><button type="button" data-rate="ok">調整して再現</button><button type="button" data-rate="bad">このままやらない</button></div><textarea id="fb-text" placeholder="例：COSORI 190C18分は皮が薄い。16分で足りた。ガレットは絞り不足で蒸れた。"></textarea><div class="row"><button type="button" id="fb-save">この端末に残す</button><button type="button" id="fb-copy">チャット用にコピー</button></div><p class="saved" id="fb-msg"></p></section>
+<img id="preload-thumb" src="" alt="" hidden></div>
+<div id="cook" aria-hidden="true">
+  <div class="cook-top">
+    <img id="cook-thumb" alt="">
+    <div class="ttl" id="cook-title"></div>
+    <button class="listbtn" id="open-index" type="button">一覧</button>
+    <button class="x" id="close" type="button" aria-label="概略に戻る">閉じる</button>
+  </div>
+  <div class="prog"><i id="prog"></i></div>
+  <div class="stage">
+    <div class="sec" id="cook-sec"></div>
+    <div class="chips" id="cook-chips"></div>
+    <h2 id="cook-h"></h2>
+    <p id="cook-b"></p>
+    <div class="hint" id="cook-hint" hidden></div>
+  </div>
+  <div class="cook-nav">
+    <button type="button" class="nav-btn prev" id="prev">前へ</button>
+    <div class="pos" id="pos"></div>
+    <button type="button" class="nav-btn next" id="next">次へ</button>
+  </div>
+</div>
+<div id="index" aria-hidden="true">
+  <div class="cook-top">
+    <div class="ttl">工程一覧</div>
+    <button class="x" id="close-index" type="button">戻る</button>
+  </div>
+  <ol id="index-list"></ol>
+</div>
+<script id="recipe-data" type="application/json">{"title":"献立の流れ：鶏ラビゴット、ガレット、フンゲット","eyebrow":"MENU / FLOW","lead":"この1枚で3皿の全工程を進める。常温のソースとなすを先に置き、COSORIはなす→鶏。ガレットは熱々で切る。","card_type":"menu","base_servings":2,"time":"約50分","total_time":"約50分","status":"※未実食","images":[],"variants":[{"id":"standard","label":"2人","overrides":{}}],"dishes":[{"name":"鶏もものCOSORIグリル、ラビゴット","temp":"肉は熱々 / ソースは常温","gear":"COSORI","hold_min":3},{"name":"ゆでじゃがいものガレット","temp":"熱々","gear":"フライパン","hold_min":0},{"name":"千両なすのフンゲット","temp":"温または常温","gear":"COSORI→フライパン","hold_min":10}],"advance":["ラビゴットは朝に作って冷蔵可。出す30分前に室温へ戻す","ゆで芋は既にある。切るのは焼く直前","なすの塩15分は開始と同時に始める"],"timeline":[{"t":"0:00","do":"ソース乳化、鶏となすに塩","temp":"常温","detail":"熱を使わない仕込みを先に閉じる。なすと鶏の塩は同時に15分取る。"},{"t":"0:15","do":"なすをCOSORI 180C14分","temp":"常温可","detail":"拭いてEV15g。7分で一度振る。出し終わったらトマトと合わせて常温置き。"},{"t":"0:18","do":"芋を千切りして絞る","temp":"—","detail":"水洗いしない。布巾で強く絞る。フライパンを同時に熱する。"},{"t":"0:22","do":"ガレット片面8分。なすを合わせる","temp":"なすは常温へ","detail":"厚さ1.5cm、動かさない。トマトは7〜10分で汁だけ残す。"},{"t":"0:30","do":"鶏を190C18分。ガレットを返す","temp":"熱々へ","detail":"皮を上。返さない。中心74C。ガレット裏面7分。"},{"t":"0:48","do":"鶏を3分休ませて盛る","temp":"熱々＋常温","detail":"ソースは肉の周囲。フンゲットは常温のまま。ガレットは直前に切る。"}],"ingredients":[{"name":"鶏もも（皮付き・骨なし）","g":350.0,"badge":"unverified","group":"鶏とソース"},{"name":"塩（肉）","g":4.0,"badge":"unverified","group":"鶏とソース"},{"name":"黒胡椒（肉）","g":1.0,"badge":"unverified","group":"鶏とソース"},{"name":"EVオリーブ油（肉）","g":8.0,"badge":"unverified","group":"鶏とソース"},{"name":"白ワインヴィネガー","g":20.0,"badge":"rag","group":"鶏とソース"},{"name":"EVオリーブ油（ソース）","g":30.0,"badge":"rag","group":"鶏とソース"},{"name":"サラダ油（ソース）","g":30.0,"badge":"rag","group":"鶏とソース"},{"name":"タマネギ","g":20.0,"badge":"rag","group":"鶏とソース"},{"name":"塩漬けケイパー","g":10.0,"badge":"rag","group":"鶏とソース"},{"name":"イタリアンパセリ","g":3.0,"badge":"rag","group":"鶏とソース"},{"name":"シブレット","g":2.0,"badge":"rag","group":"鶏とソース"},{"name":"エストラゴン","g":2.0,"badge":"rag","group":"鶏とソース"},{"name":"ディジョンマスタード","g":3.0,"badge":"rag","group":"鶏とソース"},{"name":"塩（ソース）","g":2.0,"badge":"unverified","group":"鶏とソース"},{"name":"黒胡椒（ソース）","g":1.0,"badge":"unverified","group":"鶏とソース"},{"name":"ゆでじゃがいも（正味）","g":400.0,"badge":"web","group":"ガレット"},{"name":"塩（ガレット）","g":3.0,"badge":"web","group":"ガレット"},{"name":"黒胡椒（ガレット）","g":1.0,"badge":"unverified","group":"ガレット"},{"name":"無塩バター","g":20.0,"badge":"web","group":"ガレット"},{"name":"サラダ油（ガレット）","g":10.0,"badge":"web","group":"ガレット"},{"name":"千両なす","g":500.0,"badge":"web","group":"フンゲット"},{"name":"チェリートマト","g":180.0,"badge":"web","group":"フンゲット"},{"name":"ニンニク","g":6.0,"badge":"web","group":"フンゲット"},{"name":"EVオリーブ油（なす）","g":15.0,"badge":"unverified","group":"フンゲット"},{"name":"EVオリーブ油（トマト）","g":20.0,"badge":"web","group":"フンゲット"},{"name":"塩（なす下処理）","g":5.0,"badge":"unverified","group":"フンゲット"},{"name":"塩（なす仕上げ）","g":2.0,"badge":"unverified","group":"フンゲット"},{"name":"バジル（葉）","g":8.0,"badge":"web","group":"フンゲット"},{"name":"黒胡椒（なす）","g":1.0,"badge":"unverified","group":"フンゲット"}],"ingredient_note":"ケイパーはソースだけ。フンゲットには入れない。ゆで芋は既にある前提。人数+-は全皿比例。","prep":[{"heading":"時計と機材を決める","clock":"0:00","dish":"全体","temp":"—","body":"総時間は約50分。COSORIは1槽なのでなすを先に通し、鶏を最後にする。フライパンはガレット専用。ソースとフンゲットは常温で置ける。鶏とガレットだけ熱々で出す。","hint":"手戻りになる操作：なすを鶏の後に焼く、ガレットを切ってから置く、ソースを肉の上にかける。"},{"heading":"タマネギとケイパーを処理する","clock":"0:00","dish":"ラビゴット","temp":"常温","body":"タマネギ20gをみじん切りにし、水に2分さらして強く絞る。塩漬けケイパー10gは塩を軽く洗い、粗みじん。パセリ3g、シブレット2g、エストラゴン2gを細かく切る。エストラゴンが無いときはパセリを2g足す。"},{"heading":"ラビゴットを乳化させる","clock":"0:05","dish":"ラビゴット","temp":"常温","body":"ボウルに白ワインヴィネガー20g、ディジョン3g、塩2g、黒胡椒1gを溶く。EV30gとサラダ油30gを少しずつ加えて乳化させる。タマネギ、ケイパー、香草を混ぜ、室温に置く。朝作って冷蔵した場合は出す30分前に戻す。","hint":"酸は鶏の脂とガレットの揚げ感を切る役。フンゲットのトマトとは別の酸なので、ソースは肉の周囲だけに置く。"},{"heading":"鶏に塩をする","clock":"0:00","dish":"鶏","temp":"常温","body":"鶏もも350gは筋を切り、両面を拭く。塩4gと黒胡椒1gを全面にすり込み、皮を上にして室温15分。火入れ直前にEV8gを薄く塗る。返して焼かない前提なので、皮面を整えておく。"},{"heading":"なすを切って塩をする","clock":"0:00","dish":"フンゲット","temp":"常温","body":"千両なす500gはへたを落とし、皮はむかず2〜2.5cm角にする。塩5gを振り15分置く。このあいだにソースと鶏の塩を進める。トマト180gは四分の一、ニンニク6gは薄切り、バジル8gは葉のまま待つ。"}],"cook":[{"heading":"なすを拭いてCOSORIへ","clock":"0:15","dish":"フンゲット","temp":"常温可","gear":"COSORI","body":"なすの表面の水気を完全に拭く。洗ったあとも絞って拭く。EV15gを絡め、180Cに予熱したCOSORIに一層に並べる。14分。7分で一度振る。","hint":"水分が残ると蒸れて格子にならない。皮のペクチンが形を保つのでむかない。"},{"heading":"ゆで芋を千切りして絞る","clock":"0:18","dish":"ガレット","temp":"—","parallel":"なすはCOSORIのまま","body":"冷めたゆでじゃがいも400gは皮をむき、千切りスライサーでおろす。水洗いしない。布巾で強く絞る。塩3gと黒胡椒1gを混ぜる。フライパン24cmを中火で熱し始める。","hint":"でんぷんが表面にある状態が焼き締まる条件。洗うと蒸れる。"},{"heading":"なすを振り、ガレットを敷く","clock":"0:22","dish":"ガレット / フンゲット","temp":"—","parallel":"COSORIとフライパン","body":"COSORIのなすを一度振る。フライパンにサラダ油10gとバター10gを入れ、芋を厚さ1.5cmに均等に敷く。中弱火で8分、動かさない。縁が色づくまで待つ。"},{"heading":"なすをトマトと合わせる","clock":"0:29","dish":"フンゲット","temp":"温→常温","body":"なすをCOSORIから出す。別のフライパンにEV20g、ニンニクを弱火で香りが出るまで。チェリートマトを加えて中火7〜10分。トマトが崩れ、汁が少量残ったらなすを入れて2〜3分揺する。火を止め、塩2g、黒胡椒、バジルを手でちぎって入れる。ケイパーは入れない。常温に置く。","hint":"トマトはなす1kgあたり350gまで。今夜は500gなので180g。置き置きできるので鶏の前に閉じる。"},{"heading":"鶏をCOSORIへ、ガレットを返す","clock":"0:30","dish":"鶏 / ガレット","temp":"熱々へ","parallel":"COSORIとフライパン","body":"COSORIを190Cに上げ、鶏は皮を上にして入れる。18分。返さない。厚いところの中心が74C。足りなければ皮を上のまま3分足す。同じ時間にガレットを皿で返し、裏面を7分。","hint":"COSORIは強制対流のため、オーブン基準より20〜30C低く、返す間隔も短い。今夜は返さない。"},{"heading":"鶏を休ませて切る","clock":"0:48","dish":"鶏","temp":"熱々","body":"鶏を取り出して3分休ませる。このあいだにガレットは火を止めてフライパンの中で待つ。斜めに切る。ソースは肉の周囲だけ。上に多量にかけない。"},{"heading":"盛る","clock":"0:50","dish":"全体","temp":"熱々＋常温","body":"ガレットは直前に切って熱々で出す。鶏も熱々。フンゲットは常温のままでよい。ラビゴットは鶏の周囲。3皿を同時に熱々にしない。","hint":"感想はこのカード末尾に書き、チャットへ貼ると次の組成に載る。"}],"science":"1槽の対流は同時に2皿を焼けない。常温で成立する乳化となすを先に閉じ、メイラードが必要な皮とガレットを最後に残す。74Cでミオシンは固まりコラーゲンは溶け切らない。ゆで芋の表面のでんぷんは洗わず絞ると焼き網になる。トマトはなすの油を汁で切るが、ケイパーを足すとラビゴットと酸が重なる。","notes":["骨付き鶏なら190C22分を目安にし、必ず中心温度を見る。","ガレットを途中で崩すと蒸気が入り、片面の膜が切れる。"],"sources":"複合。鶏[RAG]上柿元『ソース』 / [Web]USDA 74C。ガレット[RAG]音羽和紀 / [Web]ゆで芋ロスティ。フンゲット[Web]Sonia Peronaci トマト350g/なす1kg。"}</script>
+<script>
+(function () {
+  var el = document.getElementById("recipe-data");
+  var data = JSON.parse(el.textContent);
+  var base = Number(data.base_servings || 2);
+  var servings = base;
+  var variantId = (data.variants && data.variants[0] && data.variants[0].id) || null;
+  var step = 0;
+  var steps = [];
+  function pushSteps(arr, sec) {
+    (arr || []).forEach(function (s) {
+      steps.push({
+        sec: sec,
+        heading: s.heading,
+        body: s.body,
+        clock: s.clock || "",
+        dish: s.dish || "",
+        temp: s.temp || "",
+        parallel: s.parallel || "",
+        hint: s.hint || ""
+      });
+    });
+  }
+  pushSteps(data.prep, "下処理");
+  pushSteps(data.cook, "作り方");
+
+  function overrideG(name) {
+    var vs = data.variants || [];
+    var v = null;
+    for (var i = 0; i < vs.length; i++) { if (vs[i].id === variantId) v = vs[i]; }
+    if (!v || !v.overrides || v.overrides[name] == null) return null;
+    return Number(v.overrides[name]);
+  }
+  function gramsFor(ing) {
+    var raw = overrideG(ing.name);
+    var g = raw == null ? Number(ing.g) : raw;
+    if (!isFinite(g)) return "";
+    return String(Math.max(1, Math.round(g * servings / base))) + " g";
+  }
+  function refreshAmounts() {
+    var label = document.getElementById("sv");
+    if (label) label.textContent = String(servings) + " 人前";
+    var rows = document.querySelectorAll("#ings li[data-name]");
+    var ings = data.ingredients || [];
+    for (var i = 0; i < rows.length; i++) {
+      var name = rows[i].getAttribute("data-name");
+      var ing = null;
+      for (var j = 0; j < ings.length; j++) {
+        if (ings[j].name === name) ing = ings[j];
+      }
+      if (!ing && ings[i]) ing = ings[i];
+      if (!ing) continue;
+      var gEl = rows[i].querySelector(".g");
+      if (gEl) gEl.textContent = gramsFor(ing);
+    }
+    document.querySelectorAll(".variant").forEach(function (btn) {
+      if (btn.getAttribute("data-v") === variantId) btn.classList.add("on");
+      else btn.classList.remove("on");
+    });
+  }
+  function showStep() {
+    var s = steps[step];
+    document.getElementById("cook-sec").textContent = s.sec + (s.clock ? "  " + s.clock : "");
+    document.getElementById("cook-h").textContent = s.heading;
+    document.getElementById("cook-b").textContent = s.body;
+    var chips = [];
+    if (s.dish) chips.push(s.dish);
+    if (s.temp) chips.push(s.temp);
+    if (s.parallel) chips.push("同時: " + s.parallel);
+    var box = document.getElementById("cook-chips");
+    box.innerHTML = chips.map(function (c) { return '<span class="chip">' + c + "</span>"; }).join("");
+    var hint = document.getElementById("cook-hint");
+    if (s.hint) { hint.hidden = false; hint.textContent = s.hint; }
+    else { hint.hidden = true; hint.textContent = ""; }
+    document.getElementById("pos").textContent = (step + 1) + " / " + steps.length;
+    document.getElementById("prev").disabled = step === 0;
+    document.getElementById("next").disabled = step === steps.length - 1;
+    document.getElementById("next").textContent = step === steps.length - 1 ? "完了" : "次へ";
+    var pct = steps.length ? Math.round(((step + 1) / steps.length) * 100) : 0;
+    document.getElementById("prog").style.width = pct + "%";
+  }
+  function openCook(i) {
+    step = i;
+    document.getElementById("cook").classList.add("on");
+    document.getElementById("cook").setAttribute("aria-hidden", "false");
+    document.getElementById("index").classList.remove("on");
+    showStep();
+  }
+  function closeCook() {
+    document.getElementById("cook").classList.remove("on");
+    document.getElementById("cook").setAttribute("aria-hidden", "true");
+  }
+  function fillIndex() {
+    var ol = document.getElementById("index-list");
+    ol.innerHTML = steps.map(function (s, i) {
+      return "<li data-i=\"" + i + "\"><em>" + (i + 1) + (s.clock ? "  " + s.clock : "") + "</em><strong>" + s.heading + "</strong></li>";
+    }).join("");
+    ol.querySelectorAll("li").forEach(function (li) {
+      li.addEventListener("click", function () { openCook(Number(li.getAttribute("data-i"))); });
+    });
+  }
+
+  var start = document.getElementById("start");
+  if (start) start.addEventListener("click", function () { openCook(0); });
+  var jumpFlow = document.getElementById("jump-flow");
+  if (jumpFlow) jumpFlow.addEventListener("click", function () { fillIndex(); document.getElementById("index").classList.add("on"); });
+  var minus = document.getElementById("minus");
+  var plus = document.getElementById("plus");
+  if (minus) minus.addEventListener("click", function () {
+    if (servings > 1) { servings -= 1; refreshAmounts(); }
+  });
+  if (plus) plus.addEventListener("click", function () {
+    servings += 1; refreshAmounts();
+  });
+  document.querySelectorAll(".variant").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      variantId = btn.getAttribute("data-v");
+      refreshAmounts();
+    });
+  });
+  document.querySelectorAll("#slist li").forEach(function (li) {
+    li.addEventListener("click", function () {
+      openCook(Number(li.getAttribute("data-i")));
+    });
+  });
+  document.getElementById("prev").addEventListener("click", function () {
+    if (step > 0) { step -= 1; showStep(); }
+  });
+  document.getElementById("next").addEventListener("click", function () {
+    if (step < steps.length - 1) { step += 1; showStep(); }
+    else closeCook();
+  });
+  document.getElementById("close").addEventListener("click", closeCook);
+  document.getElementById("open-index").addEventListener("click", function () {
+    fillIndex();
+    document.getElementById("index").classList.add("on");
+  });
+  document.getElementById("close-index").addEventListener("click", function () {
+    document.getElementById("index").classList.remove("on");
+  });
+  document.addEventListener("keydown", function (e) {
+    if (document.getElementById("index").classList.contains("on") && e.key === "Escape") {
+      document.getElementById("index").classList.remove("on");
+      return;
+    }
+    if (!document.getElementById("cook").classList.contains("on")) return;
+    if (e.key === "ArrowRight" || e.key === " ") {
+      e.preventDefault();
+      if (step < steps.length - 1) { step += 1; showStep(); }
+    }
+    if (e.key === "ArrowLeft" && step > 0) { step -= 1; showStep(); }
+    if (e.key === "Escape") closeCook();
+  });
+  var sx = null;
+  document.getElementById("cook").addEventListener("touchstart", function (e) {
+    sx = e.changedTouches[0].screenX;
+  }, { passive: true });
+  document.getElementById("cook").addEventListener("touchend", function (e) {
+    if (sx == null) return;
+    var dx = e.changedTouches[0].screenX - sx;
+    sx = null;
+    if (dx < -40 && step < steps.length - 1) { step += 1; showStep(); }
+    if (dx > 40 && step > 0) { step -= 1; showStep(); }
+  });
+
+  var imgs = data.images || [];
+  if (imgs[0]) document.getElementById("cook-thumb").src = imgs[0].src;
+  document.getElementById("cook-title").textContent = data.title;
+  refreshAmounts();
+
+  var fbKey = "recipe-fb:" + (data.title || "");
+  var fbText = document.getElementById("fb-text");
+  var fbMsg = document.getElementById("fb-msg");
+  var rate = "ok";
+  try {
+    var saved = JSON.parse(localStorage.getItem(fbKey) || "null");
+    if (saved) {
+      rate = saved.rate || "ok";
+      if (fbText && saved.text) fbText.value = saved.text;
+      if (fbMsg) fbMsg.textContent = "この端末に前回の感想あり";
+    }
+  } catch (err) {}
+  document.querySelectorAll("#fb [data-rate]").forEach(function (btn) {
+    if (btn.getAttribute("data-rate") === rate) btn.classList.add("on");
+    btn.addEventListener("click", function () {
+      rate = btn.getAttribute("data-rate");
+      document.querySelectorAll("#fb [data-rate]").forEach(function (b) {
+        b.classList.toggle("on", b === btn);
+      });
+    });
+  });
+  function packFb() {
+    var text = fbText ? fbText.value.trim() : "";
+    return {
+      title: data.title,
+      rate: rate,
+      text: text,
+      memo: "【感想】" + data.title + " / " + rate + " / " + text
+    };
+  }
+  var saveBtn = document.getElementById("fb-save");
+  if (saveBtn) saveBtn.addEventListener("click", function () {
+    var pack = packFb();
+    try { localStorage.setItem(fbKey, JSON.stringify(pack)); } catch (err) {}
+    if (fbMsg) fbMsg.textContent = "この端末に保存した。チャットへ貼ると正本になる。";
+  });
+  var copyBtn = document.getElementById("fb-copy");
+  if (copyBtn) copyBtn.addEventListener("click", function () {
+    var pack = packFb();
+    var done = function () {
+      if (fbMsg) fbMsg.textContent = "コピーした。チャットに貼る。";
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(pack.memo).then(done).catch(done);
+    } else {
+      done();
+    }
+  });
+})();
+</script>
+</body>
+</html>
